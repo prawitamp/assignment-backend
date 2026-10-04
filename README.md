@@ -74,5 +74,9 @@ Dikembangkan oleh: **prawitamp** (Prawita Mepilianti)
 | `POST` | `/api/favorites` | Tambah user favorit baru (Body: `{ "id": 1, "name": "Leanne Graham", ... }`) |
 | `PATCH` | `/api/favorites/:id` | Update note user favorit (Body: `{ "note": "Catatan..." }`) |
 | `DELETE` | `/api/favorites/:id` | Hapus user favorit berdasarkan ID |
-| `GET` | `/api/users` | List user statis |
-| `GET` | `/api/users/:id` | Detail user statis berdasarkan ID |
+| `GET` | `/api/users` | List semua user |
+| `POST` | `/api/users` | Tambah pengguna baru (Body: `{ "name": "...", "email": "...", ... }`) |
+| `GET` | `/api/users/:id` | Detail user berdasarkan ID |
+| `PUT` / `PATCH` | `/api/users/:id` | Perbarui data user berdasarkan ID |
+| `DELETE` | `/api/users/:id` | Hapus user berdasarkan ID |
+

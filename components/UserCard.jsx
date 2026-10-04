@@ -14,7 +14,7 @@ function getInitials(name = "") {
     .join("");
 }
 
-export default function UserCard({ user }) {
+export default function UserCard({ user, onEdit, onDelete }) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const [showDetail, setShowDetail] = useState(false);
   const favorited = isFavorite(user.id);
@@ -65,7 +65,9 @@ export default function UserCard({ user }) {
             {user.address && (
               <p className="flex justify-between">
                 <span className="text-[#8D7B85]">Kota:</span>
-                <span className="text-[#2A1D24]">{user.address.city}</span>
+                <span className="text-[#2A1D24]">
+                  {typeof user.address === "object" ? user.address.city : user.address}
+                </span>
               </p>
             )}
           </div>
@@ -104,7 +106,38 @@ export default function UserCard({ user }) {
             )}
           </Button>
         </div>
+
+        {(onEdit || onDelete) && (
+          <div className="mt-2.5 flex items-center gap-2 pt-2.5 border-t border-[#F7EBE5]">
+            {onEdit && (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => onEdit(user)}
+                className="flex-1 rounded-full border-[#F0DFD7] bg-white text-xs font-semibold text-[#5A4550] hover:bg-pink-50 hover:text-pink-700 hover:border-pink-300"
+              >
+                <span className="mr-1">✏️</span>
+                <span>Edit</span>
+              </Button>
+            )}
+
+            {onDelete && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => onDelete(user)}
+                className="flex-1 rounded-full border border-rose-200 bg-rose-50/70 text-xs font-semibold text-rose-600 hover:bg-rose-500 hover:text-white transition-colors"
+              >
+                <span className="mr-1">🗑️</span>
+                <span>Hapus</span>
+              </Button>
+            )}
+          </div>
+        )}
       </CardContent>
     </Card>
   );
 }
+
